@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/manage.jpeg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better readability */
+            border-radius: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            font-size: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tasks</h1>
+
+        <form method="POST" action="{{ url_for('upcoming_tasks') }}">
+            {{ form.hidden_tag() }}
+            {{ form.filter.label }} {{ form.filter() }}
+            {{ form.submit() }}
+        </form>
+
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    {{ task.title }} - {{ task.due_date }} 
+                    {% if task.completed %}
+                        (Completed)
+                    {% else %}
+                        <form method="POST" action="{{ url_for('mark_task_complete', task_id=task.id) }}">
+                            {{ form.hidden_tag() }}
+                            <button type="submit">Mark as Completed</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

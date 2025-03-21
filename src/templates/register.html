@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Pet Care Scheduler</title>
+
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/background.jpeg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .register-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 5px;
+        }
+        .register-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="{{ url_for('register') }}" method="POST">
+            {{ form.hidden_tag() }}  <!-- Adds CSRF Token -->
+            
+            <input type="text" name="name" placeholder="Full Name" value="{{ form.name.data }}" required>
+            {% if form.name.errors %}
+                <ul class="errors">
+                    {% for error in form.name.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <input type="email" name="email" placeholder="Email" value="{{ form.email.data }}" required>
+            {% if form.email.errors %}
+                <ul class="errors">
+                    {% for error in form.email.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <input type="password" name="password" placeholder="Password" value="{{ form.password.data }}" required>
+            {% if form.password.errors %}
+                <ul class="errors">
+                    {% for error in form.password.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <input type="password" name="confirm_password" placeholder="Confirm Password" value="{{ form.confirm_password.data }}" required>
+            {% if form.confirm_password.errors %}
+                <ul class="errors">
+                    {% for error in form.confirm_password.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{{ url_for('login') }}" style="color: white;">Login here</a></p>
+    </div>
+
+</body>
+</html>
