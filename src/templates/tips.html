@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TIPS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{{ url_for('static', filename='images/t.jpeg') }}') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h2 {
+            margin-top: 30px;
+        }
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #3498db;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pet Wellness Tips</h1>
+
+        <h2>🐶 Dogs</h2>
+
+        <h3>Young (0-2 years)</h3>
+        <ul>
+            <li>Start basic obedience training early.</li>
+            <li>Provide age-appropriate toys and plenty of exercise.</li>
+            <li>Feed high-quality puppy food.</li>
+        </ul>
+
+        <h3>Adult (3-6 years)</h3>
+        <ul>
+            <li>Maintain a consistent exercise schedule.</li>
+            <li>Visit the vet annually for checkups and vaccines.</li>
+            <li>Ensure proper dental hygiene and grooming.</li>
+        </ul>
+
+        <h3>Senior (7+ years)</h3>
+        <ul>
+            <li>Schedule biannual vet visits for senior care.</li>
+            <li>Provide joint supplements and senior dog food.</li>
+            <li>Watch for signs of arthritis or cognitive decline.</li>
+        </ul>
+
+        <h2>🐱 Cats</h2>
+
+        <h3>Young (0-2 years)</h3>
+        <ul>
+            <li>Provide a scratching post and stimulating toys.</li>
+            <li>Keep the litter box clean and accessible.</li>
+            <li>Ensure kitten vaccinations are up-to-date.</li>
+        </ul>
+
+        <h3>Adult (3-6 years)</h3>
+        <ul>
+            <li>Feed high-quality cat food with controlled portions.</li>
+            <li>Maintain regular grooming, especially for long-haired breeds.</li>
+            <li>Visit the vet annually for wellness exams.</li>
+        </ul>
+
+        <h3>Senior (7+ years)</h3>
+        <ul>
+            <li>Provide softer bedding and low-entry litter boxes.</li>
+            <li>Monitor for weight changes or signs of illness.</li>
+            <li>Increase vet visits to twice a year.</li>
+        </ul>
+
+        <h2>🐦 Birds</h2>
+
+        <h3>Young (0-2 years)</h3>
+        <ul>
+            <li>Socialize your bird and provide basic training.</li>
+            <li>Ensure a spacious cage with enrichment toys.</li>
+            <li>Feed a diet of pellets, seeds, and fresh fruits/veggies.</li>
+        </ul>
+
+        <h3>Adult (3-6 years)</h3>
+        <ul>
+            <li>Keep the cage clean and safe.</li>
+            <li>Provide daily out-of-cage time and interaction.</li>
+            <li>Watch for signs of stress or feather plucking.</li>
+        </ul>
+
+        <h3>Senior (7+ years)</h3>
+        <ul>
+            <li>Regular checkups with an avian vet.</li>
+            <li>Modify perches and cages for easier movement.</li>
+            <li>Provide a calm and quiet environment.</li>
+        </ul>
+
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

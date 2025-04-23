@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit or Delete Pet</title>
+
+    <style>
+        /* Include the same style as the main page or customize it as needed */
+        body {
+            background-image: url('{{ url_for('static', filename='images/background1.jpeg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            width: 40%;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .confirmation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .confirmation button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .confirmation button:hover {
+            background-color: darkred;
+        }
+        .confirmation a {
+            color: lightblue;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <h1>Edit or Delete Pet</h1>
+
+    <div class="container">
+        <h2>Edit Pet Details</h2>
+        <form method="POST" action="{{ url_for('edit_pet', pet_id=pet.id) }}">
+            <label for="name">Pet Name:</label>
+            <input type="text" id="name" name="name" value="{{ pet.name }}" required>
+
+            <label for="type">Pet Type:</label>
+            <input type="text" id="type" name="type" value="{{ pet.type }}" required>
+
+            <label for="age">Pet Age:</label>
+            <input type="number" id="age" name="age" value="{{ pet.age }}" required>
+
+            <input type="submit" value="Save Changes">
+        </form>
+
+        <div class="confirmation">
+            <h2>Are you sure you want to delete {{ pet.name }}?</h2>
+            <p>This action cannot be undone.</p>
+            <form method="POST" action="{{ url_for('delete_pet', pet_id=pet.id) }}">
+                <button type="submit">Yes, Delete</button>
+            </form>
+            <p><a href="{{ url_for('upcoming_tasks') }}">Cancel</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

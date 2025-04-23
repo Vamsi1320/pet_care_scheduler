@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Vaccination Records</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Inline CSS to apply background image -->
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/v.jpeg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Adding slight transparency */
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .alert-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+       <h2 class="mb-4">Vaccination Records for {{ pet.name }}</h2>
+
+    <!-- Vaccination Table -->
+    {% if pet.vaccinations %}
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Vaccine Name</th>
+                    <th>Date Administered</th>
+                    <th>Next Due Date</th>
+                    <th>Vet Clinic</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in pet.vaccinations %}
+                <tr class="{% if v.next_due_date and v.next_due_date < date.today() %}table-danger{% endif %}">
+                    <td>{{ v.vaccine_name }}</td>
+                    <td>{{ v.date_administered.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ v.next_due_date.strftime('%Y-%m-%d') if v.next_due_date else 'N/A' }}</td>
+                    <td>{{ v.vet_clinic or 'N/A' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-muted">No vaccinations recorded yet.</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- Add Vaccination Form -->
+    <h4 class="mt-4">Add New Vaccination</h4>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.vaccine_name.label(class="form-label") }}
+            {{ form.vaccine_name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.date_administered.label(class="form-label") }}
+            {{ form.date_administered(class="form-control", placeholder="YYYY-MM-DD") }}
+        </div>
+        <div class="mb-3">
+            {{ form.next_due_date.label(class="form-label") }}
+            {{ form.next_due_date(class="form-control", placeholder="YYYY-MM-DD (optional)") }}
+        </div>
+        <div class="mb-3">
+            {{ form.vet_clinic.label(class="form-label") }}
+            {{ form.vet_clinic(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+    </form>
+
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Back to Index</a>
+    <!-- Back Button -->
+        
+</div>
+</body>
+</html>
