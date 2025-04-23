@@ -13,3 +13,34 @@ This pet management system provides significant value by offering pet owners an 
 Technologies Used:
 
 The application is built using Flask, a lightweight and flexible Python web framework that is well-suited for developing small to medium-sized applications. Flask-SQLAlchemy is utilized for database interactions, allowing seamless integration between the Python code and the SQLite database to store user and pet data. Flask-Login handles user authentication, providing secure login, logout, and session management. To protect user passwords, Werkzeug is used to securely hash passwords before storing them in the database. For building forms and ensuring security, Flask-WTF integrates with WTForms, allowing easy creation and validation of forms like registration, login, and task management forms. To prevent cross-site request forgery (CSRF) attacks, CSRFProtect is employed. SQLite serves as the database, providing a lightweight storage solution for the pet data. Jinja2, the templating engine, is used to render dynamic HTML pages, while datetime ensures proper handling and validation of dates, such as task due dates. This technology stack allows for secure, efficient, and scalable application development.
+
+Setup Instructions
+
+Ensure Python 3.7 or later is installed on your system.
+Download it from the official website: python.org/downloads
+
+To verify installation, run the following command in your terminal or Command Prompt:
+
+python --version
+
+Clone the Repository
+
+Open your terminal or Command Prompt and run:
+
+git clone https://github.com/Vamsi1320/pet_care_scheduler
+
+Navigate to the project folder:
+
+cd daily-habit-tracker/src
+
+Install Dependencies
+
+pip install -r requirements.txt
+
+Launch the Pet Care Scheduler by running:
+
+python app.py
+
+Once running, open your browser and go to:
+http://127.0.0.1:5000
+
