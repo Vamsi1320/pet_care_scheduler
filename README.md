@@ -31,7 +31,7 @@ git clone https://github.com/Vamsi1320/pet_care_scheduler
 
 Navigate to the project folder:
 
-cd daily-habit-tracker/src
+cd pet_care_scheduler/src
 
 Install Dependencies
 
